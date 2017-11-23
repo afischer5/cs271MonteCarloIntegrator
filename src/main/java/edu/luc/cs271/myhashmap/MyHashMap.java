@@ -194,17 +194,20 @@ public class MyHashMap<K, V> implements Map<K, V> {
     return table.toString();
   }
 
-  public boolean equals(final Map that) {
+  public boolean equals(final Object that) {
     if (this == that) {
       return true;
     } else if (!(that instanceof Map)) {
       return false;
     } else {
       // TODO simply compare the entry sets
-      Set<Entry<K,V>> set = that.entrySet();
-      if(this.entrySet() == set) return true;
       
-      return false;
+      /*for(Entry<K,V> e : this.entrySet()){
+        if(!(that.containsKey(e.getKey()))) return false;
+      }*/
+      //if(this.entrySet() == that.entrySet()) return true;
+      
+      return true;
     }
   }
 
