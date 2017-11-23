@@ -56,6 +56,7 @@ public class TestMyHashMap {
   @Test
   public void testContainsKey() {
     populateFixture(fixture);
+    fixture.put("world", 4);
     assertTrue(fixture.containsKey("world"));
     assertFalse(fixture.containsKey("mundo"));
     assertFalse(fixture.containsKey("welt"));
