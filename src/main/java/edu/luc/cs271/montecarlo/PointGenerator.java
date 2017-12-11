@@ -1,3 +1,5 @@
+package edu.luc.cs271.montecarlo;
+
 import java.util.*;
 import com.udojava.evalex.Expression;
 
@@ -22,13 +24,15 @@ public class PointGenerator { //maybe we should make this a point and put point 
     if(min.size()!=this.dimension || max.size()!=this.dimension) throw new IllegalArgumentException("min and max list have to have same size as the dimension of the point");
     
     Random generator = new Random();
+    this.coordinates = new ArrayList<Double>();
     
     //this adds our dependent variable
     this.coordinates.add(generator.nextDouble() * (rMax - rMin) + rMin);
-    
+    //System.out.println("independentVariable " + (generator.nextDouble() * (rMax - rMin) + rMin) );
     //adds each of our independent variables
     for(int i = 0; i < this.dimension; i++){
       this.coordinates.add(generator.nextDouble() * (max.get(i) - min.get(i)) + min.get(i));
+      //System.out.println(generator.nextDouble() * (max.get(i) - min.get(i)) + min.get(i));
     }
   }
   

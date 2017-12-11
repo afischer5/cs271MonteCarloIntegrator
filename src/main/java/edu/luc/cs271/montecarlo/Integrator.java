@@ -1,3 +1,5 @@
+package edu.luc.cs271.montecarlo;
+
 import java.util.*;
 import com.udojava.evalex.Expression;
 
@@ -11,9 +13,11 @@ public class Integrator {
   List<String> variables;
   int numberOfPoints;
   
+  boolean debug = false;
+  
   final double DEFAULT_MAX_RANGE = 100;
   final double DEFAULT_MIN_RANGE = -100;
-  final int DEFAULT_NUMBER_OF_POINTS = 10000;
+  final int DEFAULT_NUMBER_OF_POINTS = 1000;
   
   public Integrator(Expression exp, List<String> vars, int numberOfPoints, double min, double max){
       this.exp = exp;
@@ -24,7 +28,7 @@ public class Integrator {
       this.numberOfPoints = numberOfPoints;
   }
   
-  //a construtor but with several values set to default for ease of construction
+  //a construtor but with several values set to default for ease of construction and debugging
   public Integrator(Expression exp, List<String> vars){
       this.exp = exp;
       this.variables = vars;
@@ -46,19 +50,6 @@ public class Integrator {
       for(int i = 0; i < this.numberOfPoints; i++){
           pointGen.generatePoint(mins,maxs,this.minRange,this.maxRange);
           
-          
-          //the zero independent variables case
-          /*if(dim == 0){
-              final double value = this.exp.eval().doubleValue();
-              
-              if(value < 0){
-                  if(pointGen.getPointCoords().get(0) > value) result--;
-              }
-               if(value > 0){
-                  if(pointGen.getPointCoords().get(0) < value) result++;
-              }
-          }//end zero independent case*/
-          
           //inserts all the variable values into the expression
           for(int j = 0; j < this.variables.size(); j++){
               this.exp = this.exp.with(this.variables.get(j),Double.toString(pointGen.getPointCoords().get(j+1)));
@@ -68,8 +59,8 @@ public class Integrator {
           double independentVariable = pointGen.getPointCoords().get(0);
           
           //determines if the point is within the integrand
-          if(value < 0 && value < independentVariable) result--;
-          if(value > 0 && value > independentVariable) result++;
+          if(value < 0 && value < independentVariable && independentVariable <0) result--;
+          if(value > 0 && value > independentVariable && independentVariable > 0) result++;
       }//end of looking at all points
       
       //calculates the proportion of area inside integral or negatively inside it
@@ -79,6 +70,13 @@ public class Integrator {
       area = maxRange - minRange;
       for(int i = 0; i < mins.size(); i++){
           area = area * (maxs.get(i) - mins.get(i));
+      }
+      
+      if(debug){
+      System.out.println("area" + area);
+      System.out.println("value" + value);
+      System.out.println("result" + result);
+       System.out.println("independent" + pointGen.getPointCoords().get(0));
       }
       
       return area * result;
