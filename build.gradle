@@ -13,7 +13,7 @@ apply plugin: 'com.github.ben-manes.versions'
 
 
 libsDirName = 'lib' // simple workaround for error in startScripts task
-mainClassName = 'edu.luc.cs271.myhashmap.Main' // TODO change this setting to match your main class
+mainClassName = 'edu.luc.cs271.montecarlo.Main' // TODO change this setting to match your main class
 
 jar {
     manifest {
@@ -27,6 +27,7 @@ repositories {
 
 dependencies {
     testCompile group: 'junit', name: 'junit', version: '4.+'
+     compile 'com.udojava:EvalEx:1.18'
 }
 
 tasks.withType(JavaCompile) { 
