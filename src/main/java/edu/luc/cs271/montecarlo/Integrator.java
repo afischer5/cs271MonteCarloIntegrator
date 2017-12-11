@@ -39,9 +39,13 @@ public class Integrator {
   //different domain easily
   public double integrate (List<Double> mins, List<Double> maxs){
       double result = 0;
+      double area;
+      double value = 0;
       
+      //begin looking at points
       for(int i = 0; i < this.numberOfPoints; i++){
           pointGen.generatePoint(mins,maxs,this.minRange,this.maxRange);
+          
           
           //the zero independent variables case
           /*if(dim == 0){
@@ -60,16 +64,24 @@ public class Integrator {
               this.exp = this.exp.with(this.variables.get(j),Double.toString(pointGen.getPointCoords().get(j+1)));
           }
           
-          value = this.exp.eval();
-          independentVariable = pointGen.getPointCoords.get(0);
+          value = this.exp.eval().doubleValue();
+          double independentVariable = pointGen.getPointCoords().get(0);
           
           //determines if the point is within the integrand
           if(value < 0 && value < independentVariable) result--;
           if(value > 0 && value > independentVariable) result++;
+      }//end of looking at all points
+      
+      //calculates the proportion of area inside integral or negatively inside it
+      result = result / this.numberOfPoints;
+      
+      //calculates the total area and uses this to produce a final result
+      area = maxRange - minRange;
+      for(int i = 0; i < mins.size(); i++){
+          area = area * (maxs.get(i) - mins.get(i));
       }
       
-      
-      return 6.7;
-  }
+      return area * result;
+    }
   
 }
