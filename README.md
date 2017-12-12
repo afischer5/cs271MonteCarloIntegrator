@@ -45,3 +45,7 @@ x*y*z/a
 x y z a  
 0 10 0 2 0 4 0 5 (this sets each domain to go from 0 to a different number)  
 
+## EvalEx 
+EvalEx, an open source string parser to evaluate mathematical functions was used in this project.
+It can be found at https://github.com/uklimaschewski/EvalEx and it allows for the expansion of possible mathematical
+expressions via it's add function method.
