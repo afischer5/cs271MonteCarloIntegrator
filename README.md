@@ -26,22 +26,22 @@ max are separated by a space as well.
 
 ## Examples to try
 
-integrate       (this starts the integral)
-x + 1           (this is the integrand)
-0 100 100000    
-(this sets the min of teh range to 0, the max to 100, and the number of points to use to 100000)
-x               (this sets x as a variable to integrate over)
-0 99            (this sets the domain to integrate over to "(0,99)")
+integrate       (this starts the integral)  
+x + 1           (this is the integrand)  
+0 100 100000      
+(this sets the min of the range to 0, the max to 100, and the number of points to use to 100000)  
+x               (this sets x as a variable to integrate over)  
+0 99            (this sets the domain to integrate over to "(0,99)")  
 
-integrate
-SIN(x)/x    (an integral that is impossible to do by hand but we can approximate using this application)
-0 1 100000
-x
-0 20
+integrate  
+SIN(x)/x    (an integral that is impossible to do by hand but we can approximate using this application)  
+0 1 100000  
+x  
+0 20  
 
-integrate
-x*y*z/a 
-0 1000 10000
-x y z a
-0 10 0 2 0 4 0 5 (this sets each domain to go from 0 to a different number)
+integrate  
+x*y*z/a   
+0 1000 10000  
+x y z a  
+0 10 0 2 0 4 0 5 (this sets each domain to go from 0 to a different number)  
 
